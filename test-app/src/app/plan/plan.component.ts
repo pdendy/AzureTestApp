@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { PlanService } from './plan.service';
 
 import { Plan } from './plan';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-plan',
@@ -11,13 +12,18 @@ import { Plan } from './plan';
 })
 export class PlanComponent implements OnInit {
 
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  deletePlan(plan: Plan) {
-    this.plans = this.plans.filter(p => !== plan)
-  }
+  // addPlan(plan: Plan): Observable<Plan> {
+  //   return this.http.put<Plan>(this.apiUrl)
+  // }
+
+  // deletePlan(plan: Plan) {
+  //   this.plan = this.plans.filter(p => !== plan)
+  // } 
 
 }
