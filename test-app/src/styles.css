@@ -1,8 +1,6 @@
-@use '@angular/material' as mat;
-
 *{
-    font-family: 'Doctor Soos Bold', sans-serif;
-    font-size: 30px;                                               
+    font-family: 'Doctor Soos Bold';
+    font-size: 25px;                                               
 }
 
 html, body { 
@@ -14,4 +12,3 @@ html, body {
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

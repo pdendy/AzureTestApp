@@ -1,4 +1,9 @@
-mat-toolbar{
+*{
+  font-family: 'Doctor Soos Bold';
+  font-size: 25px;                                               
+}
+
+.mat-toolbar{
   background-color: #FF9800;
   color: white;
 }
