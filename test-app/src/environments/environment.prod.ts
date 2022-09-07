@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "https://localhost:7022/api"
+  apiUrl: "https://telecom-project-api.azurewebsites.net/api"
 };
