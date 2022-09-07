@@ -6,7 +6,7 @@ import { MsalGuard } from '@azure/msal-angular';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'account', component: AccountComponent, canActivate: [MsalGuard]}
+  { path: 'account', component: AccountComponent}
   
 ];
 

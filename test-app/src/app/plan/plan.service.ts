@@ -14,13 +14,18 @@ export class PlanService {
   constructor( 
     private http: HttpClient
   ){
-    this.apiUrl = `${environment.apiUrl}/Plan`;
+    this.apiUrl = `${environment.apiUrl}/Plans`;
    }
 
-  getPlan(id: number): Observable<Plan> {
+  getPlan(id: string): Observable<Plan> {
     let url = `${this.apiUrl}/${id}`;
     return this.http.get<Plan>(url);
   }
+
+  getAllPlans(id: string): Observable<Plan[]> {
+    return this.http.get<Plan[]>(this.apiUrl+'/'+id);
+  }
+
   createPlan(plan: Plan): Observable<Plan> {
     return this.http.post<Plan>(this.apiUrl, plan);
   }

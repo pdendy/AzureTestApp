@@ -5,7 +5,7 @@
         </div>
         <div>
         <!-- <div class="card-body" *ngFor="let account of accounts"> -->
-            <p><strong>Account Number: </strong> {{account.id}}</p>
+            <!-- <p><strong>Account Number: </strong> {{account.id}}</p> -->
         </div>
         <h3>Billing</h3>
             <h2>Plans</h2>
@@ -14,17 +14,16 @@
             <tr>
             <th>Plan Name</th>
             <th>Price</th>
-            <th>Device</th>
-            <th>Device Cost</th>
+            <th>Total</th>
             </tr>
            </thead>
            <tbody>
-            <!-- <tr *ngFor="let plan of plans">
+            <tr *ngFor="let plan of plans">
               <td>{{plan.name}}</td>
               <td>{{plan.price}}</td>
-              <td>{{device.name}}</td>
-              <td>{{device.cost}}</td>
-            </tr> -->
+              <td>{{total}}</td>
+              <!-- <td>{{device.name}}</td>-->
+            </tr>
            </tbody>
         </table>
         <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">

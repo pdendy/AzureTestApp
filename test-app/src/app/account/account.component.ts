@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AccountService } from './account.service';
+import { PlanService } from '../plan/plan.service';
+import { DeviceService } from '../device/device.service';
 import { Route } from '@angular/router';
 //import {NestedTreeControl} from '@angular/cdk/tree';
 //import {MatTreeNestedDataSource} from '@angular/material/tree';
@@ -9,7 +11,7 @@ import { Account } from './account';
 import { Plan } from '../plan/plan';
 import { Device } from '../device/device';
 
-const WebAPI_ENDPOINT = 'api://<https://telecom-project-api.azurewebsites.net/api/Accounts>/access-as-user';
+const WebAPI_ENDPOINT = 'api://https://telecom-project-api.azurewebsites.net/api/Accounts/access-as-user';
 
 //need to check schema
 
@@ -46,12 +48,17 @@ export class AccountComponent implements OnInit {
  // dataSource = new MatTreeNestedDataSource<BillingNode>();
 
   account!: AccountType;
+  total!: number;
 
   accounts: Account[] = [];
+  plans: Plan[] = [];
+  devices: Device[] = [];
 
   constructor(
     private http: HttpClient, 
     private accountService: AccountService,
+    private planService: PlanService,
+    private deviceService: DeviceService
    // private router: Route
    // this.dataSource.data = BILLING_DATA;
   ) { }
@@ -59,7 +66,8 @@ export class AccountComponent implements OnInit {
  // hasChild = (_: number, node: BillingNode) => !!node.children && node.children.length > 0;
 
   ngOnInit() {
-    this.getAccount();
+    this.getPlans();
+    this.total = this.getTotal(this.plans);
   }
 
   getAccount() {
@@ -69,6 +77,18 @@ export class AccountComponent implements OnInit {
       });
   }
 
-  //update Account
+  getPlans() {
+    this.planService.getAllPlans('50311252')
+      .subscribe(plans => {
+        this.plans = plans;
+      })
+  }
 
+  getTotal(plans: Plan[]) {
+    let total = 0;
+    plans.forEach(function(plan){
+      total+=plan.price;
+    })
+    return total
+  }
 }

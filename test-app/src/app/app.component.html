@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<mat-toolbar >
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="50px" height="35px" class="mx-2 my-2">
+<mat-toolbar class="mx-4 my-2">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="50px" height="35px" >
     <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark">
         <path d="M544 0c-17.67 0-32 14.33-32 31.1V480C512 497.7 526.3 512 544 512s32-14.33 32-31.1V31.1C576 14.33 561.7 0 544 0zM160 
 288C142.3 288 128 302.3 128 319.1v160C128 497.7 142.3 512 160 512s32-14.33 32-31.1V319.1C192 302.3 177.7 288 160 288zM32 384C14.33 
@@ -16,7 +16,7 @@
 
   <a mat-button routerLink="/account">Account</a>
 
-  <button mat-raised-button *ngIf="!loginDisplay" (click)="login()">Login</button>
+  <button mat-raised-button class="mx-4 my-2" *ngIf="!loginDisplay" (click)="login()">Login</button>
   <button class="btn btn-outline-light my-2 mx-3" *ngIf="!loginDisplay" (click)="login()">Sign-up</button>
   <button mat-raised-button *ngIf="loginDisplay" (click)="logout()">Logout</button>
 
