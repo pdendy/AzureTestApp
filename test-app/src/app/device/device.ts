@@ -1,7 +1,7 @@
 export interface Device {
-    id: string;
+    id?: string;
     accountId: string;
-    PlanId: string;
+    planId?: string;
     name: string;
-    PhoneNumber: number
+    phoneNumber: number
 }
