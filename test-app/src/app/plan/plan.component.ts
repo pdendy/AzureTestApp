@@ -13,9 +13,9 @@ import { Observable } from 'rxjs';
 export class PlanComponent implements OnInit {
   _accountId = localStorage.getItem('id')
   plans = [
-    {accountId: this._accountId, name:'Thing 1', price:20, deviceLimit:1},
-    {accountId: this._accountId, name:'Thing 2', price:30, deviceLimit:2},
-    {accountId: this._accountId, name:'Thing 3', price:40, deviceLimit:3}
+    {accountId: '50311252', name:'Thing 1', price:20, deviceLimit:1},
+    {accountId: '50311252', name:'Thing 2', price:30, deviceLimit:2},
+    {accountId: '50311252', name:'Thing 3', price:40, deviceLimit:3}
   ]
 
   constructor(
