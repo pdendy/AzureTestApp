@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Device }  from './device';
+import { DeviceDTO } from './device-dto';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -10,9 +11,16 @@ import { environment } from 'src/environments/environment';
 export class DeviceService {
 
   private apiUrl: string; 
+  private httpOptions = {
+      headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+      })
+    };
 
   constructor(
-    private http: HttpClient) { 
+    private http: HttpClient,
+   
+      ) { 
     this.apiUrl = `${environment.apiUrl}/Devices`;
   }
 
@@ -23,12 +31,19 @@ export class DeviceService {
     let url = `${this.apiUrl}/${id}`;
     return this.http.get<Device>(url);
   }
-  createDevice(device: Device): Observable<Device> {
-    return this.http.post<Device>(this.apiUrl, device);
+  createDevice(deviceDTO: DeviceDTO) {
+    console.log('inCreateDEvice')
+    var creation = this.http.post<DeviceDTO>(this.apiUrl, deviceDTO, this.httpOptions);
+    console.log(creation)
+    return creation
   }
 
   swapDeviceNumbers(id1:string, id2:string){
     return this.http.put<Device>(this.apiUrl + '/' + id1 + '/with/' + id2, null);
+  }
+
+  addDeviceToPlan(deviceId: string, planId:string){
+    return this.http.put<Device>(this.apiUrl + '/'+deviceId+'?planId='+planId,null)
   }
 
   updateDevice(device: Device): Observable<Device> {

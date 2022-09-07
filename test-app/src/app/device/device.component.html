@@ -10,8 +10,11 @@
                     </div>
                     <div class="card-body">
                         <h1 class="card-title pricing-card-title">$40<small class="text-muted fw-light">/mo</small>
-                        </h1>
-                        <button type="button" (click)="addDevice(2)" class="btn btn-warning my-2">Add Blue Fish</button>
+                        </h1> <div class = "col">
+                            <label>Add a name!</label>
+                            <input type=text id="device_name1" name="device_name1" #device_name1>
+                          </div>
+                        <button type="button" (click)="addDevice(1, device_name1.value)" class="btn btn-warning my-2">Add Blue Fish</button>
                     </div>
                 </div>
             </div>
@@ -24,7 +27,11 @@
                     <div class="card-body">
                         <h1 class="card-title pricing-card-title">$40<small class="text-muted fw-light">/mo</small>
                         </h1>
-                        <button type="button" (click)="addDevice(3)" class="btn btn-warning my-2">Add Blue Fish</button>
+                        <div class = "col">
+                        <label>Add a name!</label>
+                        <input type=text id="device_name2" name="device_name2" #device_name2>
+                        </div>
+                        <button type="button" (click)="addDevice(2, device_name2.value)" class="btn btn-warning my-2">Add Blue Fish</button>
                     </div>
                 </div>
             </div>
@@ -37,7 +44,11 @@
                     <div class="card-body">
                         <h1 class="card-title pricing-card-title">$40<small class="text-muted fw-light">/mo</small>
                         </h1>
-                        <button type="button" (click)="addDevice(1)" class="btn btn-warning my-2">Add Green Fish</button>
+                        <div class = "col">
+                            <label>Add a name!</label>
+                            <input type=text id="device_name3" name="device_name3" #device_name3>
+                        </div>
+                        <button type="button" (click)="addDevice(3, device_name3.value)" class="btn btn-warning my-2">Add Green Fish</button>
                     </div>
                 </div>
             </div>

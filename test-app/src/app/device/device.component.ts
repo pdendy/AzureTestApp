@@ -5,6 +5,7 @@ import { DeviceService } from './device.service';
 import { Device } from './device';
 import { Plan } from '../plan/plan';
 import { Observable } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
@@ -26,15 +27,21 @@ export class DeviceComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addDevice(deviceNum:number){
+  addDevice(deviceNum:number, device_name:string){
     if(deviceNum == 1){
-      this.deviceService.createDevice(this.devices[0])
+      this.devices[0].name += '-'
+      this.devices[0].name += device_name
+      this.deviceService.createDevice(this.devices[0]).subscribe()
     }
     if(deviceNum == 2){
-      this.deviceService.createDevice(this.devices[1])
+      this.devices[1].name += '-'
+      this.devices[1].name += device_name
+      this.deviceService.createDevice(this.devices[1]).subscribe()
     }
     if(deviceNum == 3){
-      this.deviceService.createDevice(this.devices[2])
+      this.devices[2].name += '-'
+      this.devices[2].name += device_name
+      this.deviceService.createDevice(this.devices[2]).subscribe()
     }
   }
 }

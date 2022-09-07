@@ -1,7 +1,5 @@
-export interface Device {
-    id: string;
+export interface DeviceDTO {
     accountId: string;
-    planId?: string;
     name: string;
     phoneNumber: number
 }

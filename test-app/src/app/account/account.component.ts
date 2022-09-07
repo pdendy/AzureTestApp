@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { AccountService } from './account.service';
 import { PlanService } from '../plan/plan.service';
 import { DeviceService } from '../device/device.service';
-import { Route } from '@angular/router';
+import { FormsModule, FormControl } from '@angular/forms';
+
+//import { Route } from '@angular/router';
 //import {NestedTreeControl} from '@angular/cdk/tree';
 //import {MatTreeNestedDataSource} from '@angular/material/tree';
 
@@ -49,9 +51,11 @@ export class AccountComponent implements OnInit {
 
   account!: AccountType;
   bill!: number;
-
+  selectFormControl = new FormControl('');
+  selectedPlan!:string;
   accounts: Account[] = [];
   plans: Plan[] = [];
+  availPlans: Plan[] = [];
   devices: Device[] = [];
 
   constructor(
@@ -67,8 +71,8 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() {
     this.getPlans();
+    this.getAvailablePlans();
     this.getDevices();
-    this.getBill();
   }
 
   // getAccount() {
@@ -80,22 +84,52 @@ export class AccountComponent implements OnInit {
 
   getPlans() {
     this.planService.getAllPlans('50311252')
-      .subscribe(plans => {
+      .subscribe((plans:Plan[]) => {
         this.plans = plans;
       })
   }
+
+  getAvailablePlans(){
+    this.planService.getAvailablePlans('50311252')
+    .subscribe((availPlans:Plan[]) => {
+      this.availPlans = availPlans
+    })
+  }
+
+  getPlanName(planId:string){
+    var name = ''
+    this.planService.getPlan('50311252',planId)
+    .subscribe((p:Plan) => {
+      name = p.name
+    })
+    return name
+  }
+
+  assignDeviceToPlan(deviceId: string, planId:string){
+    this.deviceService.addDeviceToPlan(deviceId, planId).subscribe();
+  }
+
   getDevices() {
     this.deviceService.getAllDevices('50311252')
-      .subscribe(devices => {
+      .subscribe((devices:Device[]) => {
         this.devices = devices;
+        this.devices.forEach(device => {
+          if(device.planId == null){
+            device.planId = 'No Plan Yet'
+          }
+        });
       })
   }
 
-  getBill() {
-    this.planService.getBillByAccount('50311252')
-      .subscribe(bill => {
-        this.bill = bill;
-      })
+
+  getBill(plans:Plan[]) {
+    var total = 0;
+    plans.forEach(function (plan) {
+      total += plan.price
+    }
+    )
+    return total
+    
   }
 
   deletePlan(id:string){
@@ -121,7 +155,7 @@ export class AccountComponent implements OnInit {
     });
     this.deviceService.swapDeviceNumbers(id1, id2).subscribe()
     this.planService.getAllPlans('50311252')
-      .subscribe(plans => {
+      .subscribe((plans: Plan[]) => {
         this.plans = plans;
       })
   }

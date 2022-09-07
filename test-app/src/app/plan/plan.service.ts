@@ -17,13 +17,16 @@ export class PlanService {
     this.apiUrl = `${environment.apiUrl}/Plans`;
    }
 
-  getPlan(id: string): Observable<Plan> {
-    let url = `${this.apiUrl}/${id}`;
-    return this.http.get<Plan>(url);
+  getPlan(id: string, planId: string): Observable<Plan> {
+    return this.http.get<Plan>(this.apiUrl +'/'+id+'/PlanId/'+planId);
   }
 
   getAllPlans(id: string): Observable<Plan[]> {
     return this.http.get<Plan[]>(this.apiUrl+'/'+id);
+  }
+
+  getAvailablePlans(id:string): Observable<Plan[]> {
+    return this.http.get<Plan[]>(this.apiUrl+'/'+id+'/Available');
   }
 
   getBillByAccount(id:string): Observable<number>{
