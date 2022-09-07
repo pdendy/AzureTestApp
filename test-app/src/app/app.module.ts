@@ -60,7 +60,7 @@ const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigato
       interactionType: InteractionType.Redirect,
       protectedResourceMap: new Map([
         ['https://graph.microsoft.com/v1.0/me', ['user.read']],
-        ['https://telecom-project-api.azurewebsites.net/api', ['account.ReadWrite']] //add scopes
+        ['https://telecom-project-api.azurewebsites.net/api', ['api://e8929c09-02d9-461b-8351-53e24d15acba/account.ReadWrite']] //add scopes
       ])
     })
   ],
