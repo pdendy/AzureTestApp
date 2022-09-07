@@ -48,7 +48,7 @@ export class AccountComponent implements OnInit {
  // dataSource = new MatTreeNestedDataSource<BillingNode>();
 
   account!: AccountType;
-  total!: number;
+  bill!: number;
 
   accounts: Account[] = [];
   plans: Plan[] = [];
@@ -67,15 +67,16 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() {
     this.getPlans();
-    this.total = this.getTotal(this.plans);
+    this.getDevices();
+    this.getBill();
   }
 
-  getAccount() {
-    this.http.get(WebAPI_ENDPOINT)
-      .subscribe(account => {
-        this.account = account;
-      });
-  }
+  // getAccount() {
+  //   this.http.get(WebAPI_ENDPOINT)
+  //     .subscribe(account => {
+  //       this.account = account;
+  //     });
+  // }
 
   getPlans() {
     this.planService.getAllPlans('50311252')
@@ -83,12 +84,45 @@ export class AccountComponent implements OnInit {
         this.plans = plans;
       })
   }
+  getDevices() {
+    this.deviceService.getAllDevices('50311252')
+      .subscribe(devices => {
+        this.devices = devices;
+      })
+  }
 
-  getTotal(plans: Plan[]) {
-    let total = 0;
-    plans.forEach(function(plan){
-      total+=plan.price;
-    })
-    return total
+  getBill() {
+    this.planService.getBillByAccount('50311252')
+      .subscribe(bill => {
+        this.bill = bill;
+      })
+  }
+
+  deletePlan(id:string){
+    this.planService.deletePlan('50311252', id).subscribe(() =>
+      this.plans = this.plans.filter(plans => plans.id != id)
+  )}
+
+  deleteDevice(id:string){
+    this.deviceService.deleteDevice(id).subscribe(() =>
+    this.devices = this.devices.filter(devices => devices.id != id)
+  )}
+
+  swapDeviceNumbers(name1:string, name2:string){
+    var id1 = ''
+    var id2 = ''
+    this.devices.forEach(device => {
+      if(device.name == name1){
+        id1 = device.id!
+      }
+      if(device.name == name2){
+        id2 = device.id!
+      }
+    });
+    this.deviceService.swapDeviceNumbers(id1, id2).subscribe()
+    this.planService.getAllPlans('50311252')
+      .subscribe(plans => {
+        this.plans = plans;
+      })
   }
 }

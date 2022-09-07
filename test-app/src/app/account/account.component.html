@@ -21,11 +21,40 @@
             <tr *ngFor="let plan of plans">
               <td>{{plan.name}}</td>
               <td>{{plan.price}}</td>
-              <td>{{total}}</td>
+              <td>{{bill}}</td>
+              <td> 
+                <button class="btn btn-danger btn-sm" (click)="deletePlan(plan.id!)">Delete</button>
+              </td>
               <!-- <td>{{device.name}}</td>-->
             </tr>
            </tbody>
         </table>
+        <h2>Devices</h2>
+        <table class="table table-bordered table-striped">
+          <thead>
+           <tr>
+           <th>Device Name</th>
+           <th>Plan Name</th>
+           <th>Phone Number</th>
+           </tr>
+          </thead>
+          <tbody>
+           <tr *ngFor="let device of devices">
+             <td>{{device.name}}</td>
+             <td>{{device.planId}}</td>
+             <td>{{device.phoneNumber}}</td>
+             <td> 
+               <button class="btn btn-danger btn-sm" (click)="deleteDevice(device.id!)">Delete</button>
+             </td>
+             <!-- <td>{{device.name}}</td>-->
+           </tr>
+          </tbody>
+       </table>
+       <button class="btn btn-sm btn-warn">Switch Phone Numbers for Devices</button>
+       <label>First Device</label>
+       <input type = text id = "device1">
+       <label>Second Device</label>
+       <input type = text id = "device2">
         <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
             <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
               <button mat-icon-button disabled></button>
@@ -42,5 +71,6 @@
             </mat-tree-node>
           </mat-tree> -->
     </div>
+
    
 </div>

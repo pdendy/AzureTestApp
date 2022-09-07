@@ -1,8 +1,8 @@
 export interface Plan {
-    id: string;
+    id?: string;
     accountId: string;
     name: string;
-    deviceCount: number;
+    deviceCount?: number;
     deviceLimit: number;
     price: number;
 }

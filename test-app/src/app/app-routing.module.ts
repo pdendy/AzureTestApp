@@ -3,10 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AccountComponent } from './account/account.component';
 import { MsalGuard } from '@azure/msal-angular';
+import { PlanComponent } from './plan/plan.component';
+import { DeviceComponent } from './device/device.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'account', component: AccountComponent}
+  { path: 'account', component: AccountComponent},
+  { path: 'plans', component: PlanComponent},
+  { path: 'devices', component:DeviceComponent}
   
 ];
 

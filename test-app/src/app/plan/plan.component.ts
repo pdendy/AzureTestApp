@@ -12,15 +12,31 @@ import { Observable } from 'rxjs';
 })
 export class PlanComponent implements OnInit {
 
+  plans = [
+    {accountId: "50311252", name:'Thing 1', price:20, deviceLimit:1},
+    {accountId: "50311252", name:'Thing 2', price:30, deviceLimit:2},
+    {accountId: "50311252", name:'Thing 3', price:40, deviceLimit:3}
+  ]
 
-  constructor() { }
+  constructor(
+    private planService:PlanService
+  ) { }
 
   ngOnInit(): void {
   }
 
-  // addPlan(plan: Plan): Observable<Plan> {
-  //   return this.http.put<Plan>(this.apiUrl)
-  // }
+  addPlan(planNum:number){
+    if(planNum == 1){
+      this.planService.createPlan(this.plans[0]).subscribe();
+    }
+    if(planNum == 2){
+      this.planService.createPlan(this.plans[1]).subscribe();
+    }
+    if(planNum == 3){
+      this.planService.createPlan(this.plans[2]).subscribe();
+    }
+  }
+  
 
   // deletePlan(plan: Plan) {
   //   this.plan = this.plans.filter(p => !== plan)
