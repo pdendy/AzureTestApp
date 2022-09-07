@@ -52,9 +52,9 @@ export class AppComponent implements OnInit, OnDestroy {
           next: (result:any) => {
             console.log(result);
             this.setLoginDisplay();
-            //this.authService.instance.setActiveAccount(result)
-            ///var id = result.account?.id
-            //localStorage.setItem('id', '' + id)
+            this.authService.instance.setActiveAccount(result)
+            var id = result.account?.id
+            localStorage.setItem('id', '' + id)
           },
           error: (error:any) => console.log(error)
         });
