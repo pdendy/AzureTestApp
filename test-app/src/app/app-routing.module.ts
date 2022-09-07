@@ -8,10 +8,9 @@ import { DeviceComponent } from './device/device.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'account', component: AccountComponent},
-  { path: 'plans', component: PlanComponent},
-  { path: 'devices', component:DeviceComponent}
-  
+  { path: 'account', component: AccountComponent},//, canActivate: [MsalGuard]},
+  { path: 'plans/:id', component: PlanComponent},
+  { path: 'devices/:id', component:DeviceComponent}
 ];
 
 const isIframe = window !== window.parent && !window.opener;

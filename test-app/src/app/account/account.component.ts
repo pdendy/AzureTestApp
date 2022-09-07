@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { AccountService } from './account.service';
 import { PlanService } from '../plan/plan.service';
 import { DeviceService } from '../device/device.service';
+import { ProfileService } from '../profile.service';
+
 import { FormsModule, FormControl } from '@angular/forms';
 
 //import { Route } from '@angular/router';
@@ -62,7 +64,8 @@ export class AccountComponent implements OnInit {
     private http: HttpClient, 
     private accountService: AccountService,
     private planService: PlanService,
-    private deviceService: DeviceService
+    private deviceService: DeviceService,
+    private profileService: ProfileService
    // private router: Route
    // this.dataSource.data = BILLING_DATA;
   ) { }
@@ -83,14 +86,14 @@ export class AccountComponent implements OnInit {
   // }
 
   getPlans() {
-    this.planService.getAllPlans('50311252')
+    this.planService.getAllPlans()
       .subscribe((plans:Plan[]) => {
         this.plans = plans;
       })
   }
 
   getAvailablePlans(){
-    this.planService.getAvailablePlans('50311252')
+    this.planService.getAvailablePlans()
     .subscribe((availPlans:Plan[]) => {
       this.availPlans = availPlans
     })
@@ -98,7 +101,7 @@ export class AccountComponent implements OnInit {
 
   getPlanName(planId:string){
     var name = ''
-    this.planService.getPlan('50311252',planId)
+    this.planService.getPlan(planId)
     .subscribe((p:Plan) => {
       name = p.name
     })
@@ -154,7 +157,7 @@ export class AccountComponent implements OnInit {
       }
     });
     this.deviceService.swapDeviceNumbers(id1, id2).subscribe()
-    this.planService.getAllPlans('50311252')
+    this.planService.getAllPlans()
       .subscribe((plans: Plan[]) => {
         this.plans = plans;
       })

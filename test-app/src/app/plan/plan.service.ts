@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Plan }  from './plan';
 import { environment } from 'src/environments/environment';
+import { ProfileService } from '../profile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,20 +13,24 @@ export class PlanService {
   private apiUrl: string; 
 
   constructor( 
-    private http: HttpClient
+    private http: HttpClient,
+    private profileService: ProfileService
   ){
     this.apiUrl = `${environment.apiUrl}/Plans`;
    }
 
-  getPlan(id: string, planId: string): Observable<Plan> {
+  getPlan(planId: string): Observable<Plan> {
+    var id = localStorage.getItem('id')
     return this.http.get<Plan>(this.apiUrl +'/'+id+'/PlanId/'+planId);
   }
 
-  getAllPlans(id: string): Observable<Plan[]> {
-    return this.http.get<Plan[]>(this.apiUrl+'/'+id);
+  getAllPlans(): Observable<Plan[]> {
+    var id = localStorage.getItem('id')
+    return this.http.get<Plan[]>(this.apiUrl+'/'+ id);
   }
 
-  getAvailablePlans(id:string): Observable<Plan[]> {
+  getAvailablePlans(): Observable<Plan[]> {
+    var id = localStorage.getItem('id')
     return this.http.get<Plan[]>(this.apiUrl+'/'+id+'/Available');
   }
 

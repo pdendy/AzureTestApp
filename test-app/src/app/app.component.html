@@ -15,9 +15,9 @@
 
   <div class="toolbar-spacer"></div>
 
-  <a mat-button routerLink="/account">Account</a>
-  <a mat-button routerLink="/plans">Plans</a>
-  <a mat-button routerLink="/devices">Devices</a>
+  <a mat-button [routerLink]="['/account']">Account</a>
+  <a mat-button [routerLink]="['/plans/',id]">Plans</a>
+  <a mat-button [routerLink]="['/devices/',id]">Devices</a>
 
   <button mat-raised-button class="mx-4 my-2" *ngIf="!loginDisplay" (click)="login()">Login</button>
   <button class="btn btn-outline-light my-2 mx-3" *ngIf="!loginDisplay" (click)="login()">Sign-up</button>
