@@ -8,7 +8,7 @@ import { DeviceComponent } from './device/device.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
-  { path: 'account', component: AccountComponent, canActivate: [MsalGuard]},
+  { path: 'account', component: AccountComponent,},
   { path: 'plans/:id', component: PlanComponent},
   { path: 'devices/:id', component:DeviceComponent}
 ];

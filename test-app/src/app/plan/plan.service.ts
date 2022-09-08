@@ -26,12 +26,12 @@ export class PlanService {
 
   getAllPlans(): Observable<Plan[]> {
     var id = localStorage.getItem('id')
-    return this.http.get<Plan[]>(this.apiUrl+'/'+ id);
+    return this.http.get<Plan[]>(this.apiUrl+'/'+ '50311252');
   }
 
   getAvailablePlans(): Observable<Plan[]> {
     var id = localStorage.getItem('id')
-    return this.http.get<Plan[]>(this.apiUrl+'/'+id+'/Available');
+    return this.http.get<Plan[]>(this.apiUrl+'/'+'50311252'+'/Available');
   }
 
   getBillByAccount(id:string): Observable<number>{

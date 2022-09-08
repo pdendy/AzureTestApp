@@ -45,7 +45,7 @@ const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigato
       auth: {
         clientId: '1990ef3c-beab-49fb-a593-96d24a6b5fea', // Application (client) ID from the app registration
         authority: 'https://login.microsoftonline.com/acdf4017-7754-44ec-bb62-996071c8b834', // The Azure cloud instance and the app's sign-in audience (tenant ID, common, organizations, or consumers)
-        redirectUri: 'https://brave-mushroom-0c5915210.1.azurestaticapps.net/account'// This is the redirect URI
+        redirectUri: 'https://localhost:4200/account'// This is the redirect URI
       },
       cache: {
         cacheLocation: 'localStorage',
@@ -60,7 +60,7 @@ const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigato
       interactionType: InteractionType.Redirect,
       protectedResourceMap: new Map([
         ['https://graph.microsoft.com/v1.0/me', ['user.read']],
-        ['https://telecom-project-api.azurewebsites.net/api', ['api://e8929c09-02d9-461b-8351-53e24d15acba/account.ReadWrite']] //add scopes
+        ['https://localhost:7069/api', ['api://e8929c09-02d9-461b-8351-53e24d15acba/account.ReadWrite']] //add scopes
       ])
     })
   ],
